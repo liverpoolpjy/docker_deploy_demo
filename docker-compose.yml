@@ -7,8 +7,8 @@ services:
     image: demo_web
     ports:
       - "5678"
-    links:
-      - db
+    # links:
+    #   - db
     volumes:
       - /tmp/app
     # command: python -u start.py
@@ -22,8 +22,8 @@ services:
       -  "80:80"
     volumes:
       -  ./nginx/html:/usr/share/nginx/html
-    links:
-      -  web:web
+    # links:
+    #   -  web:web
     container_name: demo_nginx
 
 

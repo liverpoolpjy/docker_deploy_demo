@@ -36,6 +36,7 @@
 			success: function(data){
 				$("#notes").html("");
 				var data = data['notes'];
+				console.log(data);
 				if(data.length==0){
 
 					$("#notes").html('<p class="text-danger">no record</p>');
