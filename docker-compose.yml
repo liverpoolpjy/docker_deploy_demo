@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  web:
+    restart: always
+    build: ./web
+    image: demo_web
+    ports:
+      - "5678"
+    links:
+      - db
+    volumes:
+      - /tmp/app
+    # command: python -u start.py
+    command: /usr/local/bin/gunicorn -w 2 -b :5678 start:app
+    container_name: demo_web
+
+  nginx:
+    build: ./nginx
+    image: demo_nginx
+    ports:
+      -  "80:80"
+    volumes:
+      -  ./nginx/html:/usr/share/nginx/html
+    links:
+      -  web:web
+    container_name: demo_nginx
+
+
+  db:
+    image: mongo:3.4
+    container_name: demo_db
