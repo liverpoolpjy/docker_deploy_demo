@@ -17,7 +17,7 @@ class Note(Document):
 def note_api():
     if request.method == 'POST':
     	content = request.form.get('content', None)
-    	item = Note(content=content, created_at=default=datetime.datetime.now())
+    	item = Note(content=content, created_at=datetime.datetime.now())
     	item.save()
 
     	notes = Note.objects()
