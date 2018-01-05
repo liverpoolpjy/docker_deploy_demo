@@ -10,14 +10,14 @@ connect(db='demo', host='demo_db')
 
 class Note(Document):
     content = StringField()
-    created_at = DateTimeField(default=datetime.datetime.now())
+    created_at = DateTimeField()
 
 
 @app.route('/api/note', methods=['POST', 'DELETE', 'GET'])
 def note_api():
     if request.method == 'POST':
     	content = request.form.get('content', None)
-    	item = Note(content=content)
+    	item = Note(content=content, created_at=default=datetime.datetime.now())
     	item.save()
 
     	notes = Note.objects()
